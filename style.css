@@ -1,4 +1,4 @@
-/* Reset e Variáveis de Cores Futuristas */
+/* Reset e Animações */
 * {
     margin: 0;
     padding: 0;
@@ -6,40 +6,46 @@
 }
 
 body {
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-    background-color: #0a0f1d; /* Fundo super escuro */
-    color: #e2e8f0;
-    padding: 2rem;
+    font-family: 'Poppins', 'Segoe UI', -apple-system, sans-serif;
+    /* Fundo dinâmico com gradiente profundo e pontos de luz coloridos */
+    background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(244, 63, 94, 0.15) 0%, transparent 40%),
+                #0f172a;
+    color: #f8fafc;
+    padding: 1.5rem;
+    min-height: 100vh;
 }
 
-/* Cabeçalho Estilo Interface Hacker */
+/* Cabeçalho de Alto Impacto */
 header {
     text-align: center;
-    margin-bottom: 4rem;
-    position: relative;
+    margin-bottom: 3.5rem;
+    padding-top: 2rem;
 }
 
 header h1 {
-    color: #00f2fe; /* Azul Ciano Neon */
-    font-size: 3rem;
-    font-weight: 900;
+    /* Texto em gradiente brilhante */
+    background: linear-gradient(135deg, #38bdf8, #818cf8, #fb7185);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.5rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+    letter-spacing: 1px;
     margin-bottom: 0.75rem;
 }
 
 header p {
     color: #94a3b8;
-    font-size: 1.1rem;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    font-weight: 400;
 }
 
 /* Grelha dos Flashcards */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2.5rem;
+    gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -47,9 +53,10 @@ header p {
 /* Estrutura do Flashcard (Efeito Flip 3D) */
 .flashcard {
     background-color: transparent;
-    height: 220px;
+    height: 200px;
     perspective: 1200px;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .flashcard-inner {
@@ -57,16 +64,17 @@ header p {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* Animação mais viva/elástica */
     transform-style: preserve-3d;
 }
 
-/* Rotação ao passar o rato (Hover) */
-.flashcard:hover .flashcard-inner {
+/* Rotação ativa */
+.flashcard:hover .flashcard-inner,
+.flashcard:active .flashcard-inner {
     transform: rotateY(180deg);
 }
 
-/* Configuração Comum de Frente e Verso */
+/* Efeito Vidro Fosco (Glassmorphism) para a Frente e Verso */
 .flashcard-front, .flashcard-back {
     position: absolute;
     width: 100%;
@@ -78,233 +86,95 @@ header p {
     justify-content: center;
     align-items: center;
     padding: 1.5rem;
-    border-radius: 16px;
-    border: 2px solid #1e293b;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 20px;
 }
 
-/* Estilo da Frente (A Pergunta/Tag) */
+/* Estilo da Frente - Vidro Elegante */
 .flashcard-front {
-    background-color: #111827; /* Cinza Escuro */
-    color: #00f2fe;
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
-/* Efeito de Brilho na Frente quando passas o rato por cima */
+/* Brilho especial na frente ao aproximar o rato */
 .flashcard:hover .flashcard-front {
-    border-color: #00f2fe;
-    box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 0 25px rgba(99, 102, 241, 0.2);
 }
 
 .flashcard-front code {
-    font-family: 'Consolas', 'Fira Code', monospace;
-    font-size: 2.2rem;
-    background-color: rgba(0, 242, 254, 0.05);
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    font-weight: bold;
-    border: 1px solid rgba(0, 242, 254, 0.2);
-    text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+    font-family: 'Consolas', monospace;
+    font-size: 2rem;
+    background: linear-gradient(135deg, #6366f1, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
 }
 
 .flashcard-front span {
     margin-top: 1.2rem;
     font-size: 0.75rem;
     color: #64748b;
-    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
 }
 
-/* Estilo do Verso (A Resposta com Degradê de Roxo Neon) */
+/* Estilo do Verso - Gradiente Magnético Aurora boreal */
 .flashcard-back {
-    background: linear-gradient(135deg, #7928ca, #ff0080); /* Roxo e Rosa Neon */
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #c084fc 100%);
     color: white;
     transform: rotateY(180deg);
-    border: none;
-    box-shadow: 0 0 25px rgba(255, 0, 128, 0.4);
+    box-shadow: 0 12px 40px 0 rgba(124, 58, 237, 0.3);
 }
 
 .flashcard-back h3 {
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin-bottom: 0.6rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
 }
 
 .flashcard-back p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.5;
-    font-weight: 500;
 }
 
-/* Ajuste para ecrãs de telemóvel */
-@media (max-width: 480px) {
-    body {
-        padding: 1rem;
-    }
-    header h1 {
-        font-size: 2rem;
-    }
-    .flashcard {
-        height: 200px;
-    }
-}
+/* Rodapé Elegante */
 footer {
     text-align: center;
-    padding: 3rem;
+    padding: 3rem 1rem;
     margin-top: 5rem;
-    font-family: 'Courier New', Courier, monospace;
     color: #64748b;
-    border-top: 1px solid #1e293b;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9rem;
 }
 
 footer strong {
-    color: #ff0080; /* Nome em rosa neon */
-    text-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
-}
-/* Reset e Variáveis de Cores Futuristas */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    background: linear-gradient(135deg, #fb7185, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
 }
 
-body {
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-    background-color: #0a0f1d; 
-    color: #e2e8f0;
-    padding: 1.5rem; /* Reduzido para dar mais espaço em ecrãs pequenos */
+/* Otimização de ecrã para telemóveis */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    .flashcard {
+        height: 190px;
+    }
 }
-
-/* Cabeçalho Otimizado para Telemóvel */
-header {
-    text-align: center;
-    margin-bottom: 2.5rem;
-}
-
-header h1 {
-    color: #00f2fe; 
-    font-size: 2rem; /* Tamanho reduzido para não quebrar em telemóveis pequenos */
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
-    margin-bottom: 0.5rem;
-}
-
-header p {
-    color: #94a3b8;
-    font-size: 0.95rem;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-/* Grelha dos Flashcards - Ajusta automaticamente de 1 até várias colunas */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem; /* Espaçamento ideal para telemóvel */
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Estrutura do Flashcard (Efeito Flip 3D) */
-.flashcard {
-    background-color: transparent;
-    height: 180px; /* Altura ligeiramente menor para caber melhor no ecrã do telemóvel */
-    perspective: 1200px;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent; /* Remove o flash azul ao tocar no telemóvel */
-}
-
-.flashcard-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
-}
-
-/* Rotação ativa tanto por Hover (PC) como por Focus/Active (Telemóvel) */
-.flashcard:hover .flashcard-inner,
-.flashcard:active .flashcard-inner,
-.flashcard:focus .flashcard-inner {
-    transform: rotateY(180deg);
-}
-
-/* Configuração Comum de Frente e Verso */
-.flashcard-front, .flashcard-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1.2rem;
-    border-radius: 16px;
-    border: 2px solid #1e293b;
-}
-
-/* Estilo da Frente */
-.flashcard-front {
-    background-color: #111827; 
-    color: #00f2fe;
-}
-
-.flashcard:hover .flashcard-front,
-.flashcard:active .flashcard-front {
-    border-color: #00f2fe;
-    box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
-}
-
-.flashcard-front code {
-    font-family: 'Consolas', 'Fira Code', monospace;
-    font-size: 1.8rem; /* Letra ligeiramente menor para não transbordar no telemóvel */
-    background-color: rgba(0, 242, 254, 0.05);
-    padding: 0.4rem 1rem;
-    border-radius: 8px;
-    font-weight: bold;
-    border: 1px solid rgba(0, 242, 254, 0.2);
-    text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
-}
-
-.flashcard-front span {
-    margin-top: 1rem;
-    font-size: 0.7rem;
-    color: #64748b;
-    font-family: 'Courier New', Courier, monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-/* Estilo do Verso */
-.flashcard-back {
-    background: linear-gradient(135deg, #7928ca, #ff0080); 
-    color: white;
-    transform: rotateY(180deg);
-    border: none;
-    box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
-}
-
-.flashcard-back h3 {
-    font-size: 1.15rem;
-    font-weight: 800;
-    margin-bottom: 0.4rem;
-    text-transform: uppercase;
-}
-
-.flashcard-back p {
-    font-size: 0.85rem; /* Ajustado para que o texto longo caiba sempre na caixa */
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.4;
-}
-
 /* Rodapé */
 footer {
     text-align: center;
