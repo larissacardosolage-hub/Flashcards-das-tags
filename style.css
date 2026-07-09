@@ -1,4 +1,4 @@
-/* Configurações Gerais */
+/* Reset e Variáveis de Cores Futuristas */
 * {
     margin: 0;
     padding: 0;
@@ -6,41 +6,49 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f4f8;
-    color: #1e293b;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    background-color: #0a0f1d; /* Fundo super escuro */
+    color: #e2e8f0;
     padding: 2rem;
 }
 
+/* Cabeçalho Estilo Interface Hacker */
 header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+    position: relative;
 }
 
 header h1 {
-    color: #0f172a;
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    color: #00f2fe; /* Azul Ciano Neon */
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+    margin-bottom: 0.75rem;
 }
 
 header p {
-    color: #64748b;
+    color: #94a3b8;
+    font-size: 1.1rem;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 /* Grelha dos Flashcards */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Estrutura do Flashcard (Efeito Flip) */
+/* Estrutura do Flashcard (Efeito Flip 3D) */
 .flashcard {
     background-color: transparent;
-    height: 200px;
-    perspective: 1000px; /* Cria o efeito 3D */
+    height: 220px;
+    perspective: 1200px;
     cursor: pointer;
 }
 
@@ -49,10 +57,8 @@ header p {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.6s;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-radius: 12px;
 }
 
 /* Rotação ao passar o rato (Hover) */
@@ -60,59 +66,89 @@ header p {
     transform: rotateY(180deg);
 }
 
-/* Frente e Verso do Cartão */
+/* Configuração Comum de Frente e Verso */
 .flashcard-front, .flashcard-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /* Esconde a parte de trás enquanto vira */
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    border: 2px solid #1e293b;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Estilo da Frente (Pergunta/Tag) */
+/* Estilo da Frente (A Pergunta/Tag) */
 .flashcard-front {
-    background-color: #ffffff;
-    color: #2563eb;
+    background-color: #111827; /* Cinza Escuro */
+    color: #00f2fe;
+}
+
+/* Efeito de Brilho na Frente quando passas o rato por cima */
+.flashcard:hover .flashcard-front {
+    border-color: #00f2fe;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
 }
 
 .flashcard-front code {
-    font-family: 'Fira Code', Consolas, monospace;
-    font-size: 2rem;
-    background-color: #eff6ff;
-    padding: 0.5rem 1rem;
+    font-family: 'Consolas', 'Fira Code', monospace;
+    font-size: 2.2rem;
+    background-color: rgba(0, 242, 254, 0.05);
+    padding: 0.6rem 1.2rem;
     border-radius: 8px;
     font-weight: bold;
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
 }
 
 .flashcard-front span {
-    margin-top: 1rem;
-    font-size: 0.8rem;
-    color: #94a3b8;
+    margin-top: 1.2rem;
+    font-size: 0.75rem;
+    color: #64748b;
+    font-family: 'Courier New', Courier, monospace;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.15em;
 }
 
-/* Estilo do Verso (Resposta/Explicação) */
+/* Estilo do Verso (A Resposta com Degradê de Roxo Neon) */
 .flashcard-back {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    background: linear-gradient(135deg, #7928ca, #ff0080); /* Roxo e Rosa Neon */
     color: white;
     transform: rotateY(180deg);
+    border: none;
+    box-shadow: 0 0 25px rgba(255, 0, 128, 0.4);
 }
 
 .flashcard-back h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .flashcard-back p {
     font-size: 0.95rem;
-    opacity: 0.9;
-    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* Ajuste para ecrãs de telemóvel */
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+    header h1 {
+        font-size: 2rem;
+    }
+    .flashcard {
+        height: 200px;
+    }
 }
