@@ -152,3 +152,16 @@ header p {
         height: 200px;
     }
 }
+footer {
+    text-align: center;
+    padding: 3rem;
+    margin-top: 5rem;
+    font-family: 'Courier New', Courier, monospace;
+    color: #64748b;
+    border-top: 1px solid #1e293b;
+}
+
+footer strong {
+    color: #ff0080; /* Nome em rosa neon */
+    text-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
+}
