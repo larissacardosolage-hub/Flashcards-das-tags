@@ -165,3 +165,158 @@ footer strong {
     color: #ff0080; /* Nome em rosa neon */
     text-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
 }
+/* Reset e Variáveis de Cores Futuristas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    background-color: #0a0f1d; 
+    color: #e2e8f0;
+    padding: 1.5rem; /* Reduzido para dar mais espaço em ecrãs pequenos */
+}
+
+/* Cabeçalho Otimizado para Telemóvel */
+header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+header h1 {
+    color: #00f2fe; 
+    font-size: 2rem; /* Tamanho reduzido para não quebrar em telemóveis pequenos */
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Grelha dos Flashcards - Ajusta automaticamente de 1 até várias colunas */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; /* Espaçamento ideal para telemóvel */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estrutura do Flashcard (Efeito Flip 3D) */
+.flashcard {
+    background-color: transparent;
+    height: 180px; /* Altura ligeiramente menor para caber melhor no ecrã do telemóvel */
+    perspective: 1200px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent; /* Remove o flash azul ao tocar no telemóvel */
+}
+
+.flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+/* Rotação ativa tanto por Hover (PC) como por Focus/Active (Telemóvel) */
+.flashcard:hover .flashcard-inner,
+.flashcard:active .flashcard-inner,
+.flashcard:focus .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+/* Configuração Comum de Frente e Verso */
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2rem;
+    border-radius: 16px;
+    border: 2px solid #1e293b;
+}
+
+/* Estilo da Frente */
+.flashcard-front {
+    background-color: #111827; 
+    color: #00f2fe;
+}
+
+.flashcard:hover .flashcard-front,
+.flashcard:active .flashcard-front {
+    border-color: #00f2fe;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+}
+
+.flashcard-front code {
+    font-family: 'Consolas', 'Fira Code', monospace;
+    font-size: 1.8rem; /* Letra ligeiramente menor para não transbordar no telemóvel */
+    background-color: rgba(0, 242, 254, 0.05);
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+}
+
+.flashcard-front span {
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    color: #64748b;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Estilo do Verso */
+.flashcard-back {
+    background: linear-gradient(135deg, #7928ca, #ff0080); 
+    color: white;
+    transform: rotateY(180deg);
+    border: none;
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
+}
+
+.flashcard-back h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+}
+
+.flashcard-back p {
+    font-size: 0.85rem; /* Ajustado para que o texto longo caiba sempre na caixa */
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.4;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 4rem;
+    font-family: 'Courier New', Courier, monospace;
+    color: #64748b;
+    border-top: 1px solid #1e293b;
+    font-size: 0.85rem;
+}
+
+footer strong {
+    color: #ff0080;
+    text-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
+}
